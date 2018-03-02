@@ -13,43 +13,59 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Clase para modelar la entidad estudiante
- * @author Juan Diego Bernal Pedroza
+ * Clase para modelar la Entidad Estudiante
+ * @author Cindy H.
  */
-@Entity(name = "Estudiante")
-public class EstudianteEntity implements Serializable{
+@Entity (name = "Estudiante")
+public class EstudianteEntity implements Serializable {
     
-    //atributo estatico para el manejo de versiones de la entidad
-    private static final long serialVersionUID = 1L;
-    
-    // llave primaria de la entidad estudiante
+    /**
+     * Atributo estático para el manejo de versiones de la entidad
+     */
+    private static final long serialVersionUID= 1L;
+
+    /**
+     * Llave primaria de la Entidad Estudiante
+     */
     @Id
     @Column (name = "id_estudiante", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEstudiante;
     
-    // variable que almacena el nombre del estudiante
-    @Column (name = "nombre", nullable = false)
+    /**
+     * Variable que almacena el nombre del estudiante
+     */
+    @Column (name = "nombre_estudiante", nullable = false)
     private String nombreEstudiante;
     
-    // variable que almacena el apellido del estudiante
-    @Column (name = "apellido", nullable = false)
+    /**
+     * Variable que almacena el apellido del estudiante
+     */
+    @Column (name = "apellido_estudiante")
     private String apellidoEstudiante;
     
-    // variable que almacena el correo del estudiante
-    @Column (name = "email", nullable = false)
-    private String correoEstudiante;
+    /**
+     * Variable que almacena el correo de contacto del estudiante
+     */
+    @Column (name = "email")
+    private String correoElectronico;
     
-    // variable que almacena el codigo del estudiante
-    @Column (name = "codigo", nullable = false)
-    private String codigoEstudiante;
-
-    //Metodos GET y SET
-    public Long getIdEstudiante() {
+    /**
+     * Variable que almacena el codigo del estudiante
+     * que lo identifica como estudiante de la konrad
+     */
+    @Column (name = "codigo_estudiante")
+    private int codigoEstudiante;
+    
+    /**
+     * Metodos GET Y SET
+     */
+    
+    public Long getIdEstudiante(){
         return idEstudiante;
     }
-
-    public void setIdEstudiante(Long idEstudiante) {
+    
+    public void setIdEstudiante(Long idEstudiante){
         this.idEstudiante = idEstudiante;
     }
 
@@ -69,25 +85,20 @@ public class EstudianteEntity implements Serializable{
         this.apellidoEstudiante = apellidoEstudiante;
     }
 
-    public String getCorreoEstudiante() {
-        return correoEstudiante;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCorreoEstudiante(String correoEstudiante) {
-        this.correoEstudiante = correoEstudiante;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
-    public String getCodigoEstudiante() {
+    public int getCodigoEstudiante() {
         return codigoEstudiante;
     }
 
-    public void setCodigoEstudiante(String codigoEstudiante) {
+    public void setCodigoEstudiante(int codigoEstudiante) {
         this.codigoEstudiante = codigoEstudiante;
     }
-    
-    
-    
-    
-    
     
 }

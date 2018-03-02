@@ -13,22 +13,29 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *Manejador de la entidad Estudiante
- * @author Juan Diego Bernal
+ * Manejador de la entidad Estudiante
+ * @author Cindy H.
  */
 @Stateless
 public class EstudiantePersistence {
-    @PersistenceContext(name = "ventasPU")
+    
+    @PersistenceContext(unitName = "ventasPU")
     protected EntityManager em;
     
-    // obtiene la lista con los datos de la tabla estudiante
-    // datos de todos los estudiantes
+    /**
+     * Obtener la lista con los datos de la tabla Estudiante
+     * @return Lista de datos de la tabla Estudiante
+     */
     public List<EstudianteEntity> findAll(){
         Query todos = em.createQuery("select e from EstudianteEntity e");
         return todos.getResultList();
     }
     
-    //encontrar una tupla especifica de la tabla estudiante por el id
+    /**
+     * Encontrar una tupla especifica de la tabla Estudiante
+     * @param id que se desea buscar
+     * @return estudianteEntity
+     */
     public EstudianteEntity find(Long id){
         EstudianteEntity estudiante = em.find(EstudianteEntity.class, id);
         return estudiante;
@@ -45,7 +52,7 @@ public class EstudiantePersistence {
     }
     
     /**
-     * actualizacion de la tabla estudiante
+     * Actualizacion de una tupla de la tabla Estudiante
      * @param estudianteActualizar
      * @return estudiante actualizado
      */
@@ -54,15 +61,11 @@ public class EstudiantePersistence {
     }
     
     /**
-     * Elimina una Tupla 
+     * Elimina una tupla estudiante de la tabla
      * @param id 
      */
-    public void delete(Long id){
+    public void delete (Long id){
         EstudianteEntity estudianteDelete = em.find(EstudianteEntity.class, id);
         em.remove(estudianteDelete);
     }
-
-//    public EstudianteEntity findByNombre(String nombre){
-//        return estudiante;
-//    }
 }
