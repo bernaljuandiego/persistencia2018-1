@@ -11,12 +11,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  * Clase para modelar la Entidad Estudiante
- * @author Cindy H.
+ * @author Bryan
  */
+
 @Entity (name = "Estudiante")
+@NamedQuery(name = "Estudiante.findByName", query = "select e from EstudianteEntity e where e.nombreEstudiante = :nombre")
 public class EstudianteEntity implements Serializable {
     
     /**

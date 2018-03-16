@@ -14,7 +14,7 @@ import javax.persistence.Id;
 
 /**
  * Clase para modelar la Entidad Libro
- * @author Cindy H.
+ * @author Bryan
  */
 @Entity 
 public class LibroEntity implements Serializable {

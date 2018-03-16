@@ -15,30 +15,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
+ * Clase que maneja la relación entre estudiante y curso
  *
- * @author CISCO
+ * @author Bryan
  */
-@Entity
-public class EstudianteCursoEntity implements Serializable{
-    
-    private final static Long serialVersionUID = 1L;
- 
+@Entity(name = "estudiante_curso")
+public class EstudianteCursoEntity implements Serializable {
+
+    private final static long serialVersionUID = 1L;
+
     @Id
-    @Column (name = "id_est_curso", unique = true, nullable = false)
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name = "id_est_curso", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEstudianteCurso;
-    
-    @ManyToOne 
-    @JoinColumn (name = "id_estudiante")
-    private EstudianteEntity estudiante;
-    
+
+    /**
+     * Atributo que controla la relación con la Tabla Estudiante.
+     */
     @ManyToOne
-    @JoinColumn (name = "id_curso")
+    @JoinColumn(name = "id_estudiante")
+    private EstudianteEntity estudiante;
+
+    /**
+     * Atributo que controla la relación con la Tabla Curso.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_curso")
     private CursoEntity curso;
-    
+
     @Column
     private int periodo;
 
+    /**
+     * Metodos GET y SET.
+     * @return 
+     */
     public Long getIdEstudianteCurso() {
         return idEstudianteCurso;
     }
@@ -70,6 +81,5 @@ public class EstudianteCursoEntity implements Serializable{
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
-    
-    
+
 }

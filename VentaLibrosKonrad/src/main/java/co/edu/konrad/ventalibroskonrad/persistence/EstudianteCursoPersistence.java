@@ -6,7 +6,6 @@
 package co.edu.konrad.ventalibroskonrad.persistence;
 
 import co.edu.konrad.ventalibroskonrad.entities.EstudianteCursoEntity;
-import co.edu.konrad.ventalibroskonrad.entities.EstudianteEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,36 +13,64 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Manejador de la Entidad EstudianteCurso
  *
- * @author CISCO
+ * @author Bryan
  */
 @Stateless
 public class EstudianteCursoPersistence {
-    
+
     @PersistenceContext(unitName = "ventasPU")
     protected EntityManager em;
-    
-    public List<EstudianteCursoEntity> findAll(){
-        Query query = em.createQuery("select ec from EstudianteCursoEntity ec");
-        return query.getResultList();
+
+    /**
+     * Método obtener toda la información de la tabla EstudianteCurso.
+     *
+     * @return lista de datos.
+     */
+    public List<EstudianteCursoEntity> findAll() {
+        Query todos = em.createQuery("select ec from EstudianteCursoEntity ec");
+        return todos.getResultList();
+    }
+
+    /**
+     * Obtener un objeto estudiante apartir de un Id.
+     *
+     * @param id
+     * @return estudiante que coincida con el Id.
+     */
+    public EstudianteCursoEntity find(Long id) {
+        EstudianteCursoEntity estCurso = em.find(EstudianteCursoEntity.class, id);
+        return estCurso;
+    }
+
+    /**
+     * Crear un nuevo objeto de la Tabla EstudianteCurso
+     *
+     * @param estudianteAgregar
+     * @return objeto a agregar
+     */
+    public EstudianteCursoEntity create(EstudianteCursoEntity estCursoAgregar) {
+        em.persist(estCursoAgregar);
+        return estCursoAgregar;
+    }
+
+    /**
+     * Actualiza un objeto de la tabla EstudianteCurso
+     * @param estCursoActualizar
+     * @return objeto actualizado.
+     */
+    public EstudianteCursoEntity update(EstudianteCursoEntity estCursoActualizar) {
+        return em.merge(estCursoActualizar);
     }
     
-    public EstudianteCursoEntity find(Long id){
-        EstudianteCursoEntity estudianteCurso = em.find(EstudianteCursoEntity.class, id);
-        return estudianteCurso;
+    /**
+     * Elimina un objeto de EstudianteCurso por el id.
+     * @param id 
+     */
+    public void delete(Long id){
+        EstudianteCursoEntity estCursoDelete = em.find(EstudianteCursoEntity.class, id);
+        em.remove(estCursoDelete); 
     }
-    
-     public EstudianteCursoEntity create(EstudianteCursoEntity estudianteCursoAgregar){
-        em.persist(estudianteCursoAgregar);
-        return estudianteCursoAgregar;
-    }
-     
-    public EstudianteCursoEntity update (EstudianteCursoEntity estudianteCursoActualizar){
-        return em.merge(estudianteCursoActualizar);
-    }
-    
-    public void delete (Long id){
-        EstudianteCursoEntity estudianteCursoDelete = em.find(EstudianteCursoEntity.class, id);
-        em.remove(estudianteCursoDelete);
-    }
+
 }
